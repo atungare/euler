@@ -3,7 +3,7 @@ import Data.List
 isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome xs = xs == (reverse xs)
 
-descendingUniqueProducts :: Int -> Int -> [Int]
-descendingUniqueProducts x y = sortBy (flip compare) $ nub [a*b | a <- [x,x-1..1], b <- [y,y-1..1]]
+uniquePalindromes :: Int  -> [Int]
+uniquePalindromes x = nub [a*b | a <- [x,x-1..1], b <- [a,a-1..1], isPalindrome (show (a*b))]
 
-main = do putStrLn $ show $ head $ filter (\x -> isPalindrome $ show x) $ descendingUniqueProducts 100 100
+main = do putStrLn $ show  $ head $ sortBy (flip compare) $ uniquePalindromes 999
